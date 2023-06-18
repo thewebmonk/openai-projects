@@ -1,4 +1,4 @@
-const getHomePage = (search, imageUrl, error) => {
+const getHomePage = (search, images = [], error) => {
   return `
     <!DOCTYPE html>
   <html lang="en">
@@ -33,7 +33,12 @@ const getHomePage = (search, imageUrl, error) => {
           </div>
           ${error ? `<p  class="mt-30">${error}</p>` : ""}
           ${
-            imageUrl ? `<img class="mt-30" src="${imageUrl}" alt="image"/>` : ""
+            images?.length
+              ? images.map(
+                  (image) =>
+                    `<img class="mt-30" src="${image.url}" alt="image"/>`
+                )
+              : ""
           }
       </form>
   </body>

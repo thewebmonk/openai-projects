@@ -12,7 +12,7 @@ const port = 3000;
 
 app.get("/", async (req, res) => {
   const search = req.query.search?.trim() || "";
-  let imageUrl = "";
+  let images = [];
   let error = "";
   if (search) {
     try {
@@ -21,7 +21,8 @@ app.get("/", async (req, res) => {
         n: 1,
         size: "512x512",
       });
-      imageUrl = response.data.data[0].url;
+      images = response.data.data;
+      console.log(images, "chk");
     } catch (err) {
       if (err?.response?.data?.error?.message) {
         error = err?.response?.data?.error?.message;
@@ -29,7 +30,7 @@ app.get("/", async (req, res) => {
       console.log(err, "chr err");
     }
   }
-  res.send(getHomePage(search, imageUrl, error));
+  res.send(getHomePage(search, images, error));
 });
 
 app.listen(port, () => {
