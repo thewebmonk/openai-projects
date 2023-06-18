@@ -8,5 +8,8 @@
     "start": "node server.js"
   },
   "author": "Ashish Patel",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "openai": "^3.3.0"
+  }
 }
